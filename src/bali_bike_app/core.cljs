@@ -1,9 +1,12 @@
 (ns bali-bike-app.core
   (:require [reagent.core :as r]
-            [re-frame.core :as rf]))
+            [re-frame.core :as rf]
+            [bali-bike-app.ui.main-page :as main-page]
+            [bali-bike-app.events]
+            [bali-bike-app.subs]))
 
 (defn app-root []
-  [:div "HELLO"])
+  [main-page/main])
 
 ;; start is called by init and after code reloading finishes
 (defn ^:dev/after-load start []
