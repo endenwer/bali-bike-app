@@ -17,5 +17,5 @@
   [{:keys [db]} [_ _]]
   {:db (edb/insert-meta db :bikes :list {:loading? true})
    :api/send-graphql {:query
-                      [:bikes {:first 5 :skip 0} bike-query]
+                      [:bikes {:first 20 :skip 0} bike-query]
                       :callback-event :on-bikes-loaded}})
