@@ -9,7 +9,7 @@
     "shadow-cljs": "2.7.32"
   },
   "dependencies": {
-    "antd": "^3.13.2",
+    "antd": "3.13.2",
     "create-react-class": "^15.6.3",
     "rc-form": "^2.4.2",
     "react": "^16.8.1",
@@ -17,6 +17,7 @@
     "react-flip-move": "^3.0.3",
     "react-highlight.js": "^1.0.7",
     "react-id-swiper": "^2.1.2",
+    "react-infinite-scroller": "^1.2.4",
     "react-sortable-hoc": "^1.6.1",
     "swiper": "^4.5.0"
   }

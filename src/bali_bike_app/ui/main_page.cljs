@@ -1,10 +1,8 @@
 (ns bali-bike-app.ui.main-page
   (:require [bali-bike-app.ui.bikes-list :as bikes-list]
-            [reagent.core :as r]
-            [re-frame.core :as rf]))
+            [bali-bike-app.ui.left-panel :as left-panel]))
 
 (defn main []
-  (r/create-class
-   {:component-did-mount #(rf/dispatch [:load-bikes])
-    :render (fn []
-              [bikes-list/main])}))
+  [:div.main-page
+   [left-panel/main]
+   [bikes-list/main]])
