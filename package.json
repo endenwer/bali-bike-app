@@ -16,6 +16,8 @@
     "react-dom": "^16.8.1",
     "react-flip-move": "^3.0.3",
     "react-highlight.js": "^1.0.7",
-    "react-sortable-hoc": "^1.6.1"
+    "react-id-swiper": "^2.1.2",
+    "react-sortable-hoc": "^1.6.1",
+    "swiper": "^4.5.0"
   }
 }
