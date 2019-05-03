@@ -4,5 +4,5 @@
 
 (defn main []
   [:div.main-page
-   [left-panel/main]
+   ;[left-panel/main]
    [bikes-list/main]])

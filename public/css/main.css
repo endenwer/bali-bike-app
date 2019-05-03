@@ -1,5 +1,5 @@
 #app {
-    height: 100%;
+    display: block;
 }
 
 .bikes-list {
@@ -21,6 +21,7 @@
 }
 
 .bikes-list .bike-card .photo {
+    border-radius: 4px;
     width: 100%;
     height: 0;
     padding-top: 66.6667%;
@@ -30,8 +31,38 @@
 }
 
 .header {
-    height: 80px;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
     border-bottom: 1px solid rgb(228, 228, 228);
+    display: flex;
+    align-items: center;
+}
+
+.header .model-search {
+    width: 450px;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.header .model-search .ant-select-selection {
+    width: 100%;
+}
+
+.header .links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header .links a {
+    margin-right: 20px;
+}
+
+.header .links .store-img {
+    height: 32px;
 }
 
 .main-page {
@@ -42,6 +73,7 @@
     min-width: 290px;
     border-left: 1px solid #f7f7f7;
 }
+
 
 @media only screen and (min-width: 520px) {
     .bikes-list .bike-card {
