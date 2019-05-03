@@ -4,14 +4,18 @@
             [re-frame.core :as rf]))
 
 (defn main []
-  (r/with-let [constants (rf/subscribe [:constants])]
+  (r/with-let [constants (rf/subscribe [:constants])
+               filters (rf/subscribe [:filters])
+               on-model-search #(rf/dispatch [:add-filters {:model-id %}])]
     [:div.header
      [:a {:href "/"}
       [:img.logo {:src "img/logo.svg"}]]
      [ant/select {:show-arrow false
                   :show-search true
                   :class-name "model-search"
-                  :placeholder "Search"}
+                  :placeholder "Search"
+                  :allow-clear true
+                  :on-change on-model-search}
       (for [[id title] (:models @constants)]
         ^{:key id} [ant/select-option {:value id} title])]
      [:div.links

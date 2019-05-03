@@ -16,3 +16,8 @@
  :constants
  (fn [app-db _]
    (:constants app-db)))
+
+(rf/reg-sub
+ :filters
+ (fn [app-db _]
+   (:filters app-db)))

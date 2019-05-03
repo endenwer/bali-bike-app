@@ -7,6 +7,7 @@
 ; bikes
 
 (rf/reg-event-fx :load-bikes bike-events/load-bikes-event)
+(rf/reg-event-fx :add-filters bike-events/add-filters-event)
 (rf/reg-event-db :on-bikes-loaded
                  [interceptors/transform-event-to-kebab]
                  bike-events/on-bikes-loaded-event)

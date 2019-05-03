@@ -3,6 +3,10 @@
 }
 
 .bikes-list {
+    width: 100%;
+}
+
+.bikes-list>div {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
