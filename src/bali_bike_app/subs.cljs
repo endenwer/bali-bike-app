@@ -11,3 +11,8 @@
  :bikes-meta
  (fn [app-db _]
    (edb/get-collection-meta app-db :bikes :list)))
+
+(rf/reg-sub
+ :constants
+ (fn [app-db _]
+   (:constants app-db)))

@@ -13,3 +13,19 @@
 
 ; api
 (rf/reg-fx :api/send-graphql api/send-graphql)
+
+(rf/reg-event-db
+ :on-constants-loaded
+ [interceptors/transform-event-to-kebab]
+ (fn [db [_ {:keys [data]}]]
+   (let [constants (:constants data)
+         models (reduce #(assoc %1 (:id %2) (:value %2)) {} (:models constants))
+         areas (reduce #(assoc %1 (:id %2) (:value %2)) {} (:areas constants))]
+     (assoc db :constants {:models models :areas areas}))))
+
+(rf/reg-event-fx
+ :initialize-db
+ (fn [_ _]
+   {:db {}
+    :api/send-graphql {:query [:constants [:models [:id :value] :areas [:id :value]]]
+                       :callback-event :on-constants-loaded}}))

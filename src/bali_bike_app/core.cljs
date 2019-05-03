@@ -20,4 +20,5 @@
   (js/console.log "stop"))
 
 (defn ^:export main []
+  (rf/dispatch-sync [:initialize-db])
   (start))
