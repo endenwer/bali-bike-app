@@ -7,20 +7,22 @@
   (r/with-let [constants (rf/subscribe [:constants])
                filters (rf/subscribe [:filters])
                on-model-search #(rf/dispatch [:add-filters {:model-id %}])]
-    [ant/select {:show-arrow false
-                 :show-search true
-                 :class-name "model-search"
-                 :placeholder "Search"
-                 :allow-clear true
-                 :on-change on-model-search
-                 :option-filter-prop "children"
-                 :filter-option (fn [input option]
-                                  (>= (.indexOf
-                                       (.props.children.toLowerCase option)
-                                       (.toLowerCase input))
-                                      0))}
-     (for [[id title] (sort-by val (:models @constants))]
-       ^{:key id} [ant/select-option {:value id} title])]))
+    [:div.search-container
+     [ant/select {:show-arrow false
+                  :show-search true
+                  :class-name "model-search"
+                  :placeholder "Search"
+                  :allow-clear true
+                  :on-change on-model-search
+                  :option-filter-prop "children"
+                  :filter-option (fn [input option]
+                                   (>= (.indexOf
+                                        (.props.children.toLowerCase option)
+                                        (.toLowerCase input))
+                                       0))}
+      (for [[id title] (sort-by val (:models @constants))]
+        ^{:key id} [ant/select-option {:value id} title])]
+     [ant/icon {:type "search"}]]))
 
 (defn main []
   [:div.header

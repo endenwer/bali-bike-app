@@ -60,6 +60,17 @@
     align-items: center;
 }
 
+.header .search-container {
+    display: flex;
+    align-items: center;
+}
+
+.header .search-container .anticon-search {
+    position: absolute;
+    font-size: 24px;
+    margin-left: 11px;
+}
+
 .header .model-search {
     width: 450px;
     display: flex;
@@ -71,11 +82,18 @@
     width: 100%;
     height: 48px;
     font-size: 17px;
+    border: 2px solid #ecf0f1;
+}
+
+.header .model-search .ant-select-selection:hover {
+    border: 2px solid #e0e3e4;
+    border-right-width: 2px !important;
 }
 
 .header .model-search .ant-select-selection .ant-select-selection__rendered {
-    line-height: 48px;
+    line-height: 44px;
     font-weight: 600;
+    margin-left: 40px;
 }
 
 .header .links {
@@ -100,6 +118,11 @@
 .main-page .left-panel {
     min-width: 290px;
     border-left: 1px solid #f7f7f7;
+}
+
+.main-page .ant-empty {
+    width: 100%;
+    margin-top: 50px;
 }
 
 

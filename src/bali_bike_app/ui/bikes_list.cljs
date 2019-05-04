@@ -10,11 +10,13 @@
 (defn main []
   (r/with-let [bikes (rf/subscribe [:bikes])
                bikes-meta (rf/subscribe [:bikes-meta])]
-    [:div.bikes-list
-     [infinite-scroll {:page-start -1
-                       :load-more #(rf/dispatch [:load-bikes])
-                       :has-more (not (:all-loaded? @bikes-meta))
-                       :loader (r/as-element [ant/spin {:key 0
-                                                        :style {:width "100%"}}])}
-      (for [bike-data @bikes]
-        ^{:key (:id bike-data)} [bike-card/main bike-data])]]))
+    (if (and (empty? @bikes) (:all-loaded? @bikes-meta))
+      [ant/empty-data {:description "Bikes not found"}]
+      [:div.bikes-list
+       [infinite-scroll {:page-start -1
+                         :load-more #(rf/dispatch [:load-bikes])
+                         :has-more (not (:all-loaded? @bikes-meta))
+                         :loader (r/as-element [ant/spin {:key 0
+                                                          :style {:width "100%"}}])}
+        (for [bike-data @bikes]
+          ^{:key (:id bike-data)} [bike-card/main bike-data])]])))
