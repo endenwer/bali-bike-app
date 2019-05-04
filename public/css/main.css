@@ -10,7 +10,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    padding: 30px 30px 0 30px;
+    padding: 30px 20px 0 20px;
 }
 
 .bikes-list .bike-card {
@@ -56,6 +56,12 @@
     top: 0;
     background-color: #fff;
     border-bottom: 1px solid rgb(228, 228, 228);
+    display: flex;
+    align-items: center;
+    margin: 0 10px 0 15px;
+}
+
+.header .left {
     display: flex;
     align-items: center;
 }
@@ -125,24 +131,48 @@
     margin-top: 50px;
 }
 
-
-@media only screen and (min-width: 520px) {
+@media only screen and (min-width: 744px) {
     .bikes-list .bike-card {
         flex: 0 1 50%;
         margin-bottom: 20px;
     }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1377px) {
     .bikes-list .bike-card {
         flex: 0 1 33.333%;
         margin-bottom: 20px;
     }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1440px) {
     .bikes-list .bike-card {
         flex: 0 1 25%;
         margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header .left {
+        width: 100%;
+    }
+
+    .header .search-container {
+        width: 100%;
+    }
+
+    .header .model-search {
+        width: 100%;
+        margin: 10px 10px 10px 0;
+    }
+
+    .header .links {
+        justify-content: flex-start;
+        margin: 0 0 10px 64px;
     }
 }

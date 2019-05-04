@@ -26,9 +26,10 @@
 
 (defn main []
   [:div.header
-   [:a {:href "/"}
-    [:img.logo {:src "img/logo.svg"}]]
-   [render-search]
+   [:div.left
+    [:a {:href "/"}
+     [:img.logo {:src "img/logo.svg"}]]
+    [render-search]]
    [:div.links
     [:a {:href "https://dashboard.balibike.app" :target "_blank"} "Add bike"]
     [:a {:href "https://itunes.apple.com/us/app/balibike/id1456497891?ls=1&mt=8"
