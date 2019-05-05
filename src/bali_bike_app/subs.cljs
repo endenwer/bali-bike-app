@@ -3,6 +3,16 @@
             [bali-bike-app.edb :as edb]))
 
 (rf/reg-sub
+ :current-bike
+ (fn [app-db _]
+   (edb/get-named-item app-db :bikes :current)))
+
+(rf/reg-sub
+ :current-bike-meta
+ (fn [app-db _]
+   (edb/get-item-meta app-db :bikes :current)))
+
+(rf/reg-sub
  :bikes
  (fn [app-db _]
    (edb/get-collection app-db :bikes :list)))

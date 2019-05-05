@@ -5,15 +5,16 @@
             [bali-bike-app.ui.bike-preview :as bike-preview]))
 
 (defn main
-  [{:keys [model-id photos daily-price weekly-price monthly-price]}]
+  [{:keys [id model-id photos daily-price weekly-price monthly-price]}]
   (r/with-let [constants (rf/subscribe [:constants])]
     [:div.bike-card
-     [bike-preview/main {:src (first photos)}]
-     [:div.title (get-in @constants [:models model-id])]
-     [:div.price
-      (when daily-price [ant/tag (str "Daily " (/ daily-price 1000) "K")])
-      (when weekly-price [ant/tag (str "Weekly " (/ weekly-price 1000) "K")])
-      (when monthly-price [ant/tag (str "Monthly " (/ monthly-price 1000) "K")])
-      (when-not (or daily-price weekly-price monthly-price)
-        [ant/tag "Ask for price"])]]))
+     [:a {:href (str "/b/" id) :target "_blank"}
+      [bike-preview/main {:src (first photos)}]
+      [:div.title (get-in @constants [:models model-id])]
+      [:div.price
+       (when daily-price [ant/tag (str "Daily " (/ daily-price 1000) "K")])
+       (when weekly-price [ant/tag (str "Weekly " (/ weekly-price 1000) "K")])
+       (when monthly-price [ant/tag (str "Monthly " (/ monthly-price 1000) "K")])
+       (when-not (or daily-price weekly-price monthly-price)
+         [ant/tag "Ask for price"])]]]))
 

@@ -46,3 +46,14 @@
                (edb/remove-collection :bikes :list)
                (edb/insert-meta :bikes :list {:all-loaded? false}))
        :dispatch [:load-bikes]})))
+
+(defn on-bike-loaded-event
+  [db [_ {:keys [data]}]]
+  (edb/insert-named-item db :bikes :current (:bike data) {:loading? false}))
+
+(defn load-current-bike-event
+  [{:keys [db]} [_ _]]
+  (let [bike-id (get-in db [:active-page :route-params :id])]
+    {:db (edb/insert-named-item db :bikes :current {} {:loading? true})
+     :api/send-graphql {:query [:bike {:id bike-id} bike-query]
+                        :callback-event :on-bike-loaded}}))

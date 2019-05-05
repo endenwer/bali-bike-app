@@ -19,6 +19,10 @@
     padding: 8px;
 }
 
+.bikes-list .bike-card a {
+    color: rgba(0,0,0,.65);
+}
+
 .bikes-list .bike-card .title {
     font-size: 16px;
     font-weight: bold;
@@ -58,7 +62,7 @@
     border-bottom: 1px solid rgb(228, 228, 228);
     display: flex;
     align-items: center;
-    margin: 0 10px 0 15px;
+    padding: 0 10px 0 15px;
 }
 
 .header .left {
