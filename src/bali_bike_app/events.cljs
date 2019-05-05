@@ -24,6 +24,11 @@
          areas (reduce #(assoc %1 (:id %2) (:value %2)) {} (:areas constants))]
      (assoc db :constants {:models models :areas areas}))))
 
+(rf/reg-event-db
+ :set-active-page
+ (fn [db [_ page-name]]
+   (assoc db :active-page page-name)))
+
 (rf/reg-event-fx
  :initialize-db
  (fn [_ _]

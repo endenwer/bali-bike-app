@@ -28,13 +28,13 @@
   [:div.header
    [:div.left
     [:a {:href "/"}
-     [:img.logo {:src "img/logo.svg"}]]
+     [:img.logo {:src "/img/logo.svg"}]]
     [render-search]]
    [:div.links
     [:a {:href "https://dashboard.balibike.app" :target "_blank"} "Add bike"]
     [:a {:href "https://itunes.apple.com/us/app/balibike/id1456497891?ls=1&mt=8"
          :target "_blank"}
-     [:img.store-img {:src "img/badgeappstore.png"}]]
+     [:img.store-img {:src "/img/badgeappstore.png"}]]
     [:a {:href "https://play.google.com/store/apps/details?id=app.balibike"
          :target "_blank"}
-     [:img.store-img {:src "img/badgegoogleplay.png"}]]]])
+     [:img.store-img {:src "/img/badgegoogleplay.png"}]]]])

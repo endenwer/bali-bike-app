@@ -1,7 +1,8 @@
 (ns bali-bike-app.core
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
-            [bali-bike-app.ui.main-page :as main-page]
+            [bali-bike-app.routes :as routes]
+            [bali-bike-app.ui.page-content :as page-content]
             [bali-bike-app.ui.header :as header]
             [bali-bike-app.events]
             [bali-bike-app.subs]))
@@ -9,7 +10,7 @@
 (defn app-root []
   [:<>
    [header/main]
-   [main-page/main]])
+   [page-content/main]])
 
 ;; start is called by init and after code reloading finishes
 (defn ^:dev/after-load start []
@@ -20,5 +21,6 @@
   (js/console.log "stop"))
 
 (defn ^:export main []
+  (routes/app-routes)
   (rf/dispatch-sync [:initialize-db])
   (start))

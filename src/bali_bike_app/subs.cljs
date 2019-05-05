@@ -21,3 +21,8 @@
  :filters
  (fn [app-db _]
    (:filters app-db)))
+
+(rf/reg-sub
+ :active-page
+ (fn [app-db _]
+   (:active-page app-db)))
