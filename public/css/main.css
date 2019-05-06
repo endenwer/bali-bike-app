@@ -180,3 +180,80 @@
         margin: 0 0 10px 64px;
     }
 }
+
+.bike-page {
+    display: flex;
+    justify-content: center;
+}
+
+.bike-page .bike {
+    padding-top: 30px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "title title"
+                         "photos attributes"
+                         "photos whatsapp-button";
+}
+
+.bike-page .whatsapp-button {
+    grid-area: whatsapp-button;
+    display: flex;
+    border: 1px solid #25D366;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #25D366;
+    color: white;
+    font-weight: bold;
+    justify-content: center;
+}
+
+.bike-page .whatsapp-button span {
+    padding-left: 10px;
+    line-height: 24px;
+}
+
+.bike-page .whatsapp-button .ant-btn {
+    width: 100%;
+}
+
+.bike-page .title {
+    margin: 0;
+}
+
+.bike-page .photos {
+    grid-area: photos;
+    border-radius: 4px;
+    height: 0;
+    padding-top: 66.6667%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 500px;
+}
+
+.bike-page .bike-attributes {
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    grid-area: attributes;
+}
+
+.bike-page .bike-attribute {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(228, 228, 228);
+}
+
+.bike-page .bike-attributes > :first-child {
+    padding-top: 0;
+}
+
+.bike-page .bike-attribute .title {
+    font-weight: bold;
+    grid-area: title;
+}
+
