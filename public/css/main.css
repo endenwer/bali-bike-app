@@ -1,5 +1,6 @@
 #app {
     display: block;
+    height: 100%;
 }
 
 .bikes-list {
