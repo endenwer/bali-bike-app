@@ -3,6 +3,10 @@
     height: 100%;
 }
 
+.ant-select-dropdown {
+    z-index: 9999;
+}
+
 .bikes-list {
     width: 100%;
 }
@@ -57,7 +61,7 @@
 }
 
 .header {
-    z-index: 9999;
+    z-index: 9998;
     position: sticky;
     top: 0;
     background-color: #fff;
@@ -186,6 +190,25 @@
 .bike-page {
     display: flex;
     justify-content: center;
+}
+
+.image-gallery {
+    width: 100%;
+    height: auto;
+}
+
+.image-gallery-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    overflow: hidden;
+    object-position: center center;
+}
+
+.fullscreen .image-gallery-slide img {
+    max-height: 100vh;
+    object-fit: contain;
 }
 
 .bike-page .bike {
