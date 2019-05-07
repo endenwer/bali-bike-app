@@ -197,8 +197,11 @@
                          "photos whatsapp-button";
 }
 
-.bike-page .whatsapp-button {
+.bike-page .whatsapp-button-container {
     grid-area: whatsapp-button;
+}
+
+.bike-page .whatsapp-button {
     display: flex;
     border: 1px solid #25D366;
     border-radius: 4px;
@@ -257,3 +260,47 @@
     grid-area: title;
 }
 
+
+@media only screen and (max-width: 1080px) {
+    .bike-page .bike {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas: "photos"
+                             "title"
+                             "attributes"
+                             "whatsapp-button";
+    }
+}
+
+@media only screen and (max-width: 744px) {
+    .bike-page .bike {
+        padding-top: 0px;
+        width: 100%;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas: "photos"
+                                 "title"
+                                 "attributes"
+                                 "whatsapp-button";
+    }
+
+    .bike-page .photos {
+        border-radius: 0px;
+        width: 100%;
+    }
+
+    .bike-page .bike>.title, .bike-page .bike-attributes {
+        padding: 0 30px;
+    }
+
+    .bike-page .whatsapp-button-container {
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        border-top: 1px solid rgb(228, 228, 228);
+    }
+
+    .bike-page .whatsapp-button {
+        margin: 20px 30px;
+    }
+}
