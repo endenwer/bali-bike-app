@@ -17,6 +17,7 @@
     "react-flip-move": "^3.0.3",
     "react-highlight.js": "^1.0.7",
     "react-id-swiper": "^2.1.2",
+    "react-image-gallery": "^0.8.16",
     "react-infinite-scroller": "^1.2.4",
     "react-sortable-hoc": "^1.6.1",
     "swiper": "^4.5.0"

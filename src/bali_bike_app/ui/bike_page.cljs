@@ -2,7 +2,10 @@
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [bali-bike-app.ant :as ant]
+            ["react-image-gallery" :default ImageGallery]
             [clojure.string :as string]))
+
+(def image-gallery (r/adapt-react-class ImageGallery))
 
 (defn format-number
   [number]
@@ -31,7 +34,10 @@
         (if (:loading? @bike-meta)
           [ant/spin]
           [:<>
-           [:div.photos {:style {:background-image (str "url(\"" (first photos) "\")")}}]
+           [image-gallery {:items (map #(identity {:original %}) photos)
+                           :show-thumbnails false
+                           :show-play-button false
+                           :additional-class "photos"}]
            [:h1.title (get-in @constants [:models model-id])]
            [:div.bike-attributes
             (when daily-price
