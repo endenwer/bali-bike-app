@@ -2,7 +2,13 @@
   (:require [bali-bike-app.events.bike :as bike-events]
             [bali-bike-app.api :as api]
             [bali-bike-app.interceptors :as interceptors]
+            [bali-bike-app.routes :as routes]
             [re-frame.core :as rf]))
+
+(rf/reg-fx
+ :set-url
+ (fn [url]
+   (routes/set-token! url)))
 
 ; bikes
 

@@ -4,11 +4,13 @@
             [bali-bike-app.routes :as routes]
             [bali-bike-app.ui.page-content :as page-content]
             [bali-bike-app.ui.header :as header]
+            [bali-bike-app.ui.meta-tags :as meta-tags]
             [bali-bike-app.events]
             [bali-bike-app.subs]))
 
 (defn app-root []
   [:<>
+   [meta-tags/main]
    [header/main]
    [page-content/main]])
 

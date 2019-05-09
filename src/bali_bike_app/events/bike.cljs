@@ -45,7 +45,8 @@
                (assoc :filters new-filters)
                (edb/remove-collection :bikes :list)
                (edb/insert-meta :bikes :list {:all-loaded? false}))
-       :dispatch [:load-bikes]})))
+       :dispatch [:load-bikes]
+       :set-url "/"})))
 
 (defn on-bike-loaded-event
   [db [_ {:keys [data]}]]

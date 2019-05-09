@@ -12,7 +12,13 @@
 (defn- dispatch-route [matched-route]
   (rf/dispatch [:set-active-page matched-route]))
 
+(def history (pushy/pushy dispatch-route parse-url))
+
 (defn app-routes []
-  (pushy/start! (pushy/pushy dispatch-route parse-url)))
+  (pushy/start! history))
 
 (def url-for (partial bidi/path-for routes))
+
+(defn set-token!
+  [token]
+  (pushy/set-token! history token))
