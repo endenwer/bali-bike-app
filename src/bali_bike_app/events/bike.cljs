@@ -20,12 +20,20 @@
       (edb/insert-meta db :bikes :list {:loading? false :all-loaded? true})
       (edb/append-collection db :bikes :list (:bikes data) {:loading? false}))))
 
+(defn filters-for-page
+  [{:keys [handler route-params]}]
+  (case handler
+    :whatsapp-bikes {:whatsapp (:whatsapp route-params)}
+    {}))
+
 (defn load-bikes-event
   [{:keys [db]} [_ _]]
   (let [page-size 20
         bikes-meta (edb/get-collection-meta db :bikes :list)
         skip (or (:skip bikes-meta) 0)
-        filters (transform-keys ->camelCaseKeyword (:filters db))
+        active-page (:active-page db)
+        page-filters (filters-for-page active-page)
+        filters (transform-keys ->camelCaseKeyword (merge page-filters (:filters db)))
         pagination-vars {:first page-size :skip skip}
         query-vars (merge pagination-vars filters)]
     (when-not (or (:all-loaded? bikes-meta) (:loading? bikes-meta))

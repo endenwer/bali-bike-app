@@ -2,6 +2,7 @@
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [bali-bike-app.ui.not-found-page :as not-found-page]
+            [bali-bike-app.ui.whatsapp-bikes-page :as whatsapp-bikes-page]
             [bali-bike-app.ui.bike-page :as bike-page]
             [bali-bike-app.ui.main-page :as main-page]))
 
@@ -10,4 +11,5 @@
     (case (:handler @active-page)
       :index [main-page/main]
       :bike [bike-page/main]
+      :whatsapp-bikes [whatsapp-bikes-page/main]
       [not-found-page/main])))

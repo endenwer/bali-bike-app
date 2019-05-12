@@ -3,6 +3,7 @@
             [bali-bike-app.api :as api]
             [bali-bike-app.interceptors :as interceptors]
             [bali-bike-app.routes :as routes]
+            [bali-bike-app.edb :as edb]
             [re-frame.core :as rf]))
 
 (rf/reg-fx
@@ -34,10 +35,20 @@
          areas (reduce #(assoc %1 (:id %2) (:value %2)) {} (:areas constants))]
      (assoc db :constants {:models models :areas areas}))))
 
-(rf/reg-event-db
+(defn page-initial-event
+  [{:keys [handler]}]
+  (case handler
+    :index [:load-bikes]
+    :whatsapp-bikes [:load-bikes]
+    :bike [:load-current-bike]))
+
+(rf/reg-event-fx
  :set-active-page
- (fn [db [_ page-name]]
-   (assoc db :active-page page-name)))
+ (fn [{:keys [db]} [_ page]]
+   {:db (-> db
+            (assoc :active-page page)
+            (edb/remove-collection :bikes :list))
+    :dispatch (page-initial-event page)}))
 
 (rf/reg-event-fx
  :initialize-db

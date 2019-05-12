@@ -4,7 +4,8 @@
             [pushy.core :as pushy]))
 
 (def routes ["/" {"" :index
-                  ["b/" :id] :bike}])
+                  ["b/" :id] :bike
+                  ["w/" :whatsapp] :whatsapp-bikes}])
 
 (defn- parse-url [url]
   (bidi/match-route routes url))

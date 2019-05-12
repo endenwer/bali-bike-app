@@ -136,9 +136,23 @@
     border-left: 1px solid #f7f7f7;
 }
 
-.main-page .ant-empty {
+.ant-empty {
     width: 100%;
     margin-top: 50px;
+}
+
+.whatsapp-bikes-page>.title {
+    display: flex;
+    align-items: center;
+    margin: 30px 30px 0 30px;
+}
+
+.whatsapp-bikes-page .title .whatsapp-button {
+    margin-left: 10px;
+}
+
+.whatsapp-bikes-page .title h1 {
+    margin: 0;
 }
 
 @media only screen and (min-width: 744px) {
@@ -222,11 +236,11 @@
                          "photos whatsapp-button";
 }
 
-.bike-page .whatsapp-button-container {
+.whatsapp-button-container {
     grid-area: whatsapp-button;
 }
 
-.bike-page .whatsapp-button {
+.whatsapp-button-container .whatsapp-button {
     display: flex;
     border: 1px solid #25D366;
     border-radius: 4px;
@@ -237,12 +251,12 @@
     justify-content: center;
 }
 
-.bike-page .whatsapp-button span {
+.whatsapp-button-container .whatsapp-button span {
     padding-left: 10px;
     line-height: 24px;
 }
 
-.bike-page .whatsapp-button .ant-btn {
+.whatsapp-button-container .whatsapp-button .ant-btn {
     width: 100%;
 }
 

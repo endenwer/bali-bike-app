@@ -16,6 +16,7 @@
        [infinite-scroll {:page-start -1
                          :load-more #(rf/dispatch [:load-bikes])
                          :has-more (not (:all-loaded? @bikes-meta))
+                         :initial-load false
                          :loader (r/as-element [ant/spin {:key 0
                                                           :style {:width "100%"}}])}
         (for [bike-data @bikes]
