@@ -4,8 +4,10 @@
             ["antd/lib/tag" :default Tag]
             ["antd/lib/icon" :default Icon]
             ["antd/lib/empty" :default Empty]
+            ["antd/lib/button" :default Button]
             [reagent.core :as r]))
 
+(def button (r/adapt-react-class Button))
 (def spin (r/adapt-react-class Spin))
 (def empty-data (r/adapt-react-class Empty))
 (def icon (r/adapt-react-class Icon))

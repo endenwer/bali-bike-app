@@ -236,8 +236,20 @@
                          "photos whatsapp-button";
 }
 
-.whatsapp-button-container {
+.bike-page .buttons {
     grid-area: whatsapp-button;
+    text-align: center;
+}
+
+.bike-page .buttons>.ant-btn {
+    margin-bottom: 10px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+}
+
+.bike-page .buttons>.ant-btn>span {
+    line-height: 46px;
 }
 
 .whatsapp-button-container .whatsapp-button {
@@ -326,6 +338,10 @@
         padding: 0 30px;
     }
 
+    .bike-page .buttons>.ant-btn {
+        margin: 0 30px 20px 30px;
+    }
+
     .bike-page .whatsapp-button-container {
         position: sticky;
         bottom: 0;
@@ -333,7 +349,7 @@
         border-top: 1px solid rgb(228, 228, 228);
     }
 
-    .bike-page .whatsapp-button {
-        margin: 20px 30px;
+    .bike-page .whatsapp-button-container {
+        padding: 20px 30px;
     }
 }
