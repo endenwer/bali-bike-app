@@ -5,8 +5,17 @@
             ["antd/lib/icon" :default Icon]
             ["antd/lib/empty" :default Empty]
             ["antd/lib/button" :default Button]
+            ["antd/lib/collapse" :default Collapse]
+            ["antd/lib/slider" :default Slider]
+            ["antd/lib/input" :default Input]
+            ["antd/lib/drawer" :default Drawer]
             [reagent.core :as r]))
 
+(def drawer (r/adapt-react-class Drawer))
+(def input (r/adapt-react-class Input))
+(def slider (r/adapt-react-class Slider))
+(def collapse (r/adapt-react-class Collapse))
+(def collapse-panel (r/adapt-react-class (.-Panel Collapse)))
 (def button (r/adapt-react-class Button))
 (def spin (r/adapt-react-class Spin))
 (def empty-data (r/adapt-react-class Empty))

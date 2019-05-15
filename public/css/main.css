@@ -131,9 +131,15 @@
     display: flex;
 }
 
-.main-page .left-panel {
-    min-width: 290px;
-    border-left: 1px solid #f7f7f7;
+.left-panel .price-filters .price-inputs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.left-panel .price-filters .price-inputs .separetor {
+    line-height: 32px;
+    font-weight: bold;
+    margin: 0 5px;
 }
 
 .ant-empty {
@@ -352,4 +358,13 @@
     .bike-page .whatsapp-button-container {
         padding: 20px 30px;
     }
+}
+
+.ant-drawer-content-wrapper {
+    padding-top: 80px;
+}
+
+.ant-drawer-body {
+    padding: 10px;
+    padding-top: 20px;
 }
