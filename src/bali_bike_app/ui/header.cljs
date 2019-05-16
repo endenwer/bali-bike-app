@@ -6,7 +6,7 @@
 (defn render-search []
   (r/with-let [constants (rf/subscribe [:constants])
                filters (rf/subscribe [:filters])
-               on-model-search #(rf/dispatch [:add-filters {:model-id %}])]
+               on-model-search #(rf/dispatch [:update-filters {:model-id %}])]
     [:div.search-container
      [ant/select {:show-arrow false
                   :show-search true

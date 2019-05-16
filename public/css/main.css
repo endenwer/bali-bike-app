@@ -136,6 +136,11 @@
     justify-content: space-between;
     margin-bottom: 20px;
 }
+
+.left-panel .price-filters .price-inputs .ant-input-number {
+    flex: 1;
+}
+
 .left-panel .price-filters .price-inputs .separetor {
     line-height: 32px;
     font-weight: bold;

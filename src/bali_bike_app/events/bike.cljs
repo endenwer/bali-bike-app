@@ -1,7 +1,10 @@
 (ns bali-bike-app.events.bike
   (:require [bali-bike-app.edb :as edb]
+            [bali-bike-app.utils :as utils]
             [camel-snake-kebab.extras :refer [transform-keys]]
             [camel-snake-kebab.core :refer [->camelCaseKeyword]]))
+
+(def page-size 20)
 
 (def bike-query
   [:id :modelId :photos
@@ -18,7 +21,9 @@
          (= 0 (count (:bikes data)))
          (and (not= 0 (count bikes)) (= (:id (last bikes)) (:id (last (:bikes data))))))
       (edb/insert-meta db :bikes :list {:loading? false :all-loaded? true})
-      (edb/append-collection db :bikes :list (:bikes data) {:loading? false}))))
+      (edb/append-collection
+       db :bikes :list (:bikes data)
+       {:loading? false :all-loaded? (< (count (:bikes data)) page-size)}))))
 
 (defn filters-for-page
   [{:keys [handler route-params]}]
@@ -28,8 +33,7 @@
 
 (defn load-bikes-event
   [{:keys [db]} [_ _]]
-  (let [page-size 20
-        bikes-meta (edb/get-collection-meta db :bikes :list)
+  (let [bikes-meta (edb/get-collection-meta db :bikes :list)
         skip (or (:skip bikes-meta) 0)
         active-page (:active-page db)
         page-filters (filters-for-page active-page)
@@ -42,15 +46,13 @@
                           [:bikes query-vars bike-query]
                           :callback-event :on-bikes-loaded}})))
 
-(defn add-filters-event
-  [{:keys [db]} [_ filters]]
-  (let [current-filters (:filters db)
-        merged-filters (merge current-filters filters)
-        new-filters (into {} (remove (comp nil? second) merged-filters))]
-    (if (= current-filters new-filters)
-      {:db (assoc db :filters merged-filters)}
+(defn update-filters-event
+  [{:keys [db]} [_ new-filters]]
+  (let [filters (:filters db)
+        updated-filters (utils/clean-merge filters new-filters)]
+    (when-not (= filters updated-filters)
       {:db (-> db
-               (assoc :filters new-filters)
+               (assoc :filters updated-filters)
                (edb/remove-collection :bikes :list)
                (edb/insert-meta :bikes :list {:all-loaded? false}))
        :dispatch [:load-bikes]

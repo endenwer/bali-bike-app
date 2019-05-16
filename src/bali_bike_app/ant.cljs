@@ -9,9 +9,11 @@
             ["antd/lib/slider" :default Slider]
             ["antd/lib/input" :default Input]
             ["antd/lib/drawer" :default Drawer]
+            ["antd/lib/input-number" :default InputNumber]
             [reagent.core :as r]))
 
 (def drawer (r/adapt-react-class Drawer))
+(def input-number (r/adapt-react-class InputNumber))
 (def input (r/adapt-react-class Input))
 (def slider (r/adapt-react-class Slider))
 (def collapse (r/adapt-react-class Collapse))

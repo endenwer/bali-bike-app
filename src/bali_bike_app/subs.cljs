@@ -36,3 +36,13 @@
  :active-page
  (fn [app-db _]
    (:active-page app-db)))
+
+(rf/reg-sub
+ :left-panel-visible?
+ (fn [app-db _]
+   (:left-panel-visible? app-db)))
+
+(rf/reg-sub
+ :left-panel-data
+ (fn [app-db _]
+   (:left-panel-data app-db)))

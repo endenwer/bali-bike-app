@@ -1,5 +1,6 @@
 (ns bali-bike-app.events
   (:require [bali-bike-app.events.bike :as bike-events]
+            [bali-bike-app.events.left-panel :as left-panel-events]
             [bali-bike-app.api :as api]
             [bali-bike-app.interceptors :as interceptors]
             [bali-bike-app.routes :as routes]
@@ -15,7 +16,7 @@
 
 (rf/reg-event-fx :load-bikes bike-events/load-bikes-event)
 (rf/reg-event-fx :load-current-bike bike-events/load-current-bike-event)
-(rf/reg-event-fx :add-filters bike-events/add-filters-event)
+(rf/reg-event-fx :update-filters bike-events/update-filters-event)
 (rf/reg-event-db :on-bike-loaded
                  [interceptors/transform-event-to-kebab]
                  bike-events/on-bike-loaded-event)
@@ -49,6 +50,10 @@
             (assoc :active-page page)
             (edb/remove-collection :bikes :list))
     :dispatch (page-initial-event page)}))
+
+(rf/reg-event-db :open-left-panel left-panel-events/open-event)
+(rf/reg-event-fx :close-left-panel left-panel-events/close-event)
+(rf/reg-event-db :update-left-panel-data left-panel-events/update-data-event)
 
 (rf/reg-event-fx
  :initialize-db
