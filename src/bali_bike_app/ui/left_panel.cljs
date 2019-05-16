@@ -11,12 +11,15 @@
         min-price (get data min-key)
         max-price (get data max-key)
         set-price (fn [key price] (rf/dispatch [:update-left-panel-data {key price}]))
+        clear-filter #(rf/dispatch [:update-left-panel-data {min-key nil max-key nil}])
         parser-regexp #"Rp\s?|(,*)"
         parser #(string/replace (str %) parser-regexp "")
         formatter-regexp #"\B(?=(\d{3})+(?!\d))"
         formatter #(str "Rp " (string/replace (str %) formatter-regexp ","))]
     [:div.price-filters
-     [:div title]
+     [:div.title
+      [:span title]
+      (when (or min-price max-price) [:a {:on-click clear-filter} "Clear"])]
      [:div.price-inputs
       [ant/input-number {:value min-price
                          :step 1000
@@ -41,9 +44,8 @@
                   :width 400
                   :closable false
                   :class-name "left-panel"}
-      [ant/collapse {:bordered false}
-       [ant/collapse-panel {:header "Location"}]
-       [ant/collapse-panel {:header "Price"}
+      [ant/collapse {:bordered false :default-active-key ["price"]}
+       [ant/collapse-panel {:header "Price" :key "price"}
         [render-price-filters {:title "Daily price"
                                :key :daily
                                :data @data
@@ -55,4 +57,9 @@
         [render-price-filters {:title "Monthly price"
                                :key :monthly
                                :data @data
-                               :min-max [500 5000]}]]]]]))
+                               :min-max [500 5000]}]]]
+
+      [:div.bottom
+       [ant/button {:type "primary"
+                    :size "large"
+                    :on-click #(rf/dispatch [:close-left-panel])} "Show bikes"]]]]))

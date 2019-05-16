@@ -131,10 +131,38 @@
     display: flex;
 }
 
+.left-panel .ant-collapse-header {
+    font-weight: bold;
+    user-select: none;
+}
+
+.left-panel .ant-collapse-borderless>.ant-collapse-item {
+    border: none;
+}
+
+.left-panel .bottom {
+    display: flex;
+    width: 380px;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+}
+
+.left-panel .bottom>.ant-btn {
+    width: 100%;
+}
+
 .left-panel .price-filters .price-inputs {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+}
+
+
+.left-panel .price-filters .title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
 }
 
 .left-panel .price-filters .price-inputs .ant-input-number {
