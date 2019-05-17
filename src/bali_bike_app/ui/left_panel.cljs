@@ -36,30 +36,28 @@
 (defn main []
   (r/with-let [visible (rf/subscribe [:left-panel-visible?])
                data (rf/subscribe [:left-panel-data])]
-    [:div
-     [ant/button {:on-click #(rf/dispatch [:open-left-panel])} "Filters"]
-     [ant/drawer {:visible @visible
-                  :placement "left"
-                  :on-close #(rf/dispatch [:close-left-panel])
-                  :width 400
-                  :closable false
-                  :class-name "left-panel"}
-      [ant/collapse {:bordered false :default-active-key ["price"]}
-       [ant/collapse-panel {:header "Price" :key "price"}
-        [render-price-filters {:title "Daily price"
-                               :key :daily
-                               :data @data
-                               :min-max [10 500]}]
-        [render-price-filters {:title "Weekly price"
-                               :key :weekly
-                               :data @data
-                               :min-max [100 1000]}]
-        [render-price-filters {:title "Monthly price"
-                               :key :monthly
-                               :data @data
-                               :min-max [500 5000]}]]]
+    [ant/drawer {:visible @visible
+                 :placement "left"
+                 :on-close #(rf/dispatch [:close-left-panel])
+                 :width 400
+                 :closable false
+                 :class-name "left-panel"}
+     [ant/collapse {:bordered false :default-active-key ["price"]}
+      [ant/collapse-panel {:header "Price" :key "price"}
+       [render-price-filters {:title "Daily price"
+                              :key :daily
+                              :data @data
+                              :min-max [10 500]}]
+       [render-price-filters {:title "Weekly price"
+                              :key :weekly
+                              :data @data
+                              :min-max [100 1000]}]
+       [render-price-filters {:title "Monthly price"
+                              :key :monthly
+                              :data @data
+                              :min-max [500 5000]}]]]
 
-      [:div.bottom
-       [ant/button {:type "primary"
-                    :size "large"
-                    :on-click #(rf/dispatch [:close-left-panel])} "Show bikes"]]]]))
+     [:div.bottom
+      [ant/button {:type "primary"
+                   :size "large"
+                   :on-click #(rf/dispatch [:close-left-panel])} "Show bikes"]]]))
