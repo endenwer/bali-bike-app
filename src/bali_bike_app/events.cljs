@@ -20,6 +20,8 @@
 (rf/reg-event-db :on-bike-loaded
                  [interceptors/transform-event-to-kebab]
                  bike-events/on-bike-loaded-event)
+(rf/reg-event-db :change-bikes-order-type bike-events/change-bikes-order-type-event)
+(rf/reg-event-db :toggle-bikes-order-direction bike-events/toggle-bikes-order-direction-event)
 (rf/reg-event-db :on-bikes-loaded
                  [interceptors/transform-event-to-kebab]
                  bike-events/on-bikes-loaded-event)
@@ -58,6 +60,6 @@
 (rf/reg-event-fx
  :initialize-db
  (fn [_ _]
-   {:db {}
+   {:db {:bikes-order {:type "DATE" :direction "DESC"}}
     :api/send-graphql {:query [:constants [:models [:id :value] :areas [:id :value]]]
                        :callback-event :on-constants-loaded}}))

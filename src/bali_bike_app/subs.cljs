@@ -46,3 +46,8 @@
  :left-panel-data
  (fn [app-db _]
    (:left-panel-data app-db)))
+
+(rf/reg-sub
+ :bikes-order
+ (fn [app-db _]
+   (:bikes-order app-db)))

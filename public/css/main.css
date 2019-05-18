@@ -135,6 +135,8 @@
     position: sticky;
     padding: 20px 30px;
     top: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .left-panel .ant-collapse-header {

@@ -68,3 +68,13 @@
     {:db (edb/insert-named-item db :bikes :current {} {:loading? true})
      :api/send-graphql {:query [:bike {:id bike-id} bike-query]
                         :callback-event :on-bike-loaded}}))
+
+(defn change-bikes-order-type-event
+  [db [_ order-type]]
+  (assoc-in db [:bikes-order :type] order-type))
+
+(defn toggle-bikes-order-direction-event
+  [db [_ _]]
+  (let [current-direction (get-in db [:bikes-order :direction])]
+    (.log js/console current-direction)
+    (assoc-in db [:bikes-order :direction] (if (= current-direction "DESC") "ASC" "DESC"))))

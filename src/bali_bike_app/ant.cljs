@@ -10,8 +10,13 @@
             ["antd/lib/input" :default Input]
             ["antd/lib/drawer" :default Drawer]
             ["antd/lib/input-number" :default InputNumber]
+            ["antd/lib/menu" :default Menu]
+            ["antd/lib/dropdown" :default Dropdown]
             [reagent.core :as r]))
 
+(def dropdown (r/adapt-react-class Dropdown))
+(def menu (r/adapt-react-class Menu))
+(def menu-item (r/adapt-react-class (.-Item Menu)))
 (def drawer (r/adapt-react-class Drawer))
 (def input-number (r/adapt-react-class InputNumber))
 (def input (r/adapt-react-class Input))
@@ -19,6 +24,7 @@
 (def collapse (r/adapt-react-class Collapse))
 (def collapse-panel (r/adapt-react-class (.-Panel Collapse)))
 (def button (r/adapt-react-class Button))
+(def button-group (r/adapt-react-class (.-Group Button)))
 (def spin (r/adapt-react-class Spin))
 (def empty-data (r/adapt-react-class Empty))
 (def icon (r/adapt-react-class Icon))
