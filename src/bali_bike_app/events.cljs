@@ -17,11 +17,11 @@
 (rf/reg-event-fx :load-bikes bike-events/load-bikes-event)
 (rf/reg-event-fx :load-current-bike bike-events/load-current-bike-event)
 (rf/reg-event-fx :update-filters bike-events/update-filters-event)
+(rf/reg-event-fx :change-bikes-order-type bike-events/change-bikes-order-type-event)
+(rf/reg-event-fx :toggle-bikes-order-direction bike-events/toggle-bikes-order-direction-event)
 (rf/reg-event-db :on-bike-loaded
                  [interceptors/transform-event-to-kebab]
                  bike-events/on-bike-loaded-event)
-(rf/reg-event-db :change-bikes-order-type bike-events/change-bikes-order-type-event)
-(rf/reg-event-db :toggle-bikes-order-direction bike-events/toggle-bikes-order-direction-event)
 (rf/reg-event-db :on-bikes-loaded
                  [interceptors/transform-event-to-kebab]
                  bike-events/on-bikes-loaded-event)

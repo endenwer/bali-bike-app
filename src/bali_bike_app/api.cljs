@@ -24,8 +24,12 @@
          (clojure.string/join
           \,
           (map (fn [[k v]]
-                 (let [v (if (keyword? v) (name v) v)]
+                 (let [v (if (keyword? v) (name v) v)
+                       v-meta (meta v)]
                    (cond
+                     (:enum v-meta)
+                     (str (name k) ":" (:key v))
+
                      (string? v)
                      (str (name k) ":\"" (str v) \")
 

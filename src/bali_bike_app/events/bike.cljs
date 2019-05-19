@@ -35,11 +35,14 @@
   [{:keys [db]} [_ _]]
   (let [bikes-meta (edb/get-collection-meta db :bikes :list)
         skip (or (:skip bikes-meta) 0)
+        bikes-order (:bikes-order db)
+        order-by (str (:type bikes-order) "_" (:direction bikes-order))
         active-page (:active-page db)
         page-filters (filters-for-page active-page)
         filters (transform-keys ->camelCaseKeyword (merge page-filters (:filters db)))
         pagination-vars {:first page-size :skip skip}
-        query-vars (merge pagination-vars filters)]
+        query-vars (merge pagination-vars filters
+                          {:orderBy (with-meta {:key order-by} {:enum true})})]
     (when-not (or (:all-loaded? bikes-meta) (:loading? bikes-meta))
       {:db (edb/insert-meta db :bikes :list {:loading? true :skip (+ skip page-size)})
        :api/send-graphql {:query
@@ -70,11 +73,17 @@
                         :callback-event :on-bike-loaded}}))
 
 (defn change-bikes-order-type-event
-  [db [_ order-type]]
-  (assoc-in db [:bikes-order :type] order-type))
+  [{:keys [db]} [_ order-type]]
+  {:db (-> db
+           (assoc-in [:bikes-order :type] order-type)
+           (edb/remove-collection :bikes :list))
+   :dispatch [:load-bikes]})
 
 (defn toggle-bikes-order-direction-event
-  [db [_ _]]
-  (let [current-direction (get-in db [:bikes-order :direction])]
-    (.log js/console current-direction)
-    (assoc-in db [:bikes-order :direction] (if (= current-direction "DESC") "ASC" "DESC"))))
+  [{:keys [db]} [_ _]]
+  (let [current-direction (get-in db [:bikes-order :direction])
+        new-direction (if (= current-direction "DESC") "ASC" "DESC")]
+    {:db (-> db
+             (assoc-in [:bikes-order :direction] new-direction)
+             (edb/remove-collection :bikes :list))
+     :dispatch [:load-bikes]}))
