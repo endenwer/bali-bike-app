@@ -9,12 +9,9 @@
   (r/with-let [constants (rf/subscribe [:constants])]
     [:div.bike-card
      [:a {:href (str "/b/" id) :target "_blank"}
-      [bike-preview/main {:src (first photos)}]
-      [:div.title (get-in @constants [:models model-id])]
-      [:div.price
-       (when daily-price [ant/tag (str "Daily " (/ daily-price 1000) "K")])
-       (when weekly-price [ant/tag (str "Weekly " (/ weekly-price 1000) "K")])
-       (when monthly-price [ant/tag (str "Monthly " (/ monthly-price 1000) "K")])
-       (when-not (or daily-price weekly-price monthly-price)
-         [ant/tag "Ask for price"])]]]))
+      [bike-preview/main {:src (first photos)
+                          :daily-price daily-price
+                          :weekly-price weekly-price
+                          :monthly-price monthly-price}]
+      [:div.title (get-in @constants [:models model-id])]]]))
 
