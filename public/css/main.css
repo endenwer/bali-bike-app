@@ -161,6 +161,11 @@
     padding: 20px;
     position: fixed;
     bottom: 0;
+    background-color: white;
+}
+
+.left-panel .ant-drawer-body {
+    margin-bottom: 80px;
 }
 
 .left-panel .bottom>.ant-btn {

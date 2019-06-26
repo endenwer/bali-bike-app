@@ -7,7 +7,8 @@
    :min-weekly-price
    :max-weekly-price
    :min-monthly-price
-   :max-monthly-price])
+   :max-monthly-price
+   :area-id])
 
 (defn open-event
   [db _]
@@ -26,4 +27,4 @@
 
 (defn update-data-event
   [db [_ new-data]]
-  (assoc db :left-panel-data (utils/clean-merge (:data db) new-data)))
+  (assoc db :left-panel-data (utils/clean-merge (:left-panel-data db) new-data)))

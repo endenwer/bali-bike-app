@@ -4,6 +4,24 @@
             [reagent.core :as r]
             [re-frame.core :as rf]))
 
+(defn render-area-filter
+  [{:keys [:area-id]}]
+  (r/with-let [constants (rf/subscribe [:constants])]
+    [ant/select {:placeholder "Select rental area"
+                 :style {:width "100%"}
+                 :value area-id
+                 :onChange #(rf/dispatch [:update-left-panel-data {:area-id %}])
+                 :allowClear true
+                 :showSearch true
+                 :optionFilterProp "children"
+                 :filterOption (fn [input option]
+                                 (>= (.indexOf
+                                      (.props.children.toLowerCase option)
+                                      (.toLowerCase input))
+                                     0))}
+     (for [[id title] (:areas @constants)]
+       ^{:key id} [ant/select-option {:value id} title])]))
+
 (defn render-price-filters
   [{:keys [title key data]}]
   (let [min-key (keyword (str "min-" (name key) "-price"))
@@ -42,6 +60,9 @@
                  :width 400
                  :closable false
                  :class-name "left-panel"}
+     [ant/collapse {:bordered false :default-active-key ["area"]}
+      [ant/collapse-panel {:header "Area" :key "area"}
+       [render-area-filter @data]]]
      [ant/collapse {:bordered false :default-active-key ["price"]}
       [ant/collapse-panel {:header "Price" :key "price"}
        [render-price-filters {:title "Daily price"
